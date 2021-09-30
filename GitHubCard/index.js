@@ -3,7 +3,17 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+import axios from 'axios';
 
+const myGit = axios.get(`https://api.github.com/users/davidfletcher`)
+  .then(res =>{
+    console.log(myGit)
+  })
+  .catch(err =>{
+    console.error(err)
+  })
+
+//console.log(myGit)
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -28,7 +38,13 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+
+const followersArray = [ "tetondan", "dustinmyers", "justsml", "luishrd", "bigknell" ];
+//TODO: console.log(followersArray);
+//? thonbaosjdnf
+//! ;jlahdsf
+//* ;alkjsdfl;
+// ;alkjsdf
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -49,6 +65,52 @@ const followersArray = [];
       </div>
     </div>
 */
+
+const myContain = document.querySelector('.cards');
+
+ function myFunc(data) {
+  const card = document.createElement('div');
+    card.classList.add('card');
+    card.appendChild(img);
+
+  const img = document.createElement('img');
+    img.setAttribute('src', data.avatar_url);
+
+  const div = document.createElement('div');
+    div.classList.add('card-info'); 
+
+  const h3 = document.createElement('h3');
+    h3.classList.add('name');
+    h3.textContent = data.name;
+
+  const para1 = document.createElement('p');
+    para1.className('username');
+    para1.textContent = data.login;
+
+  const location = document.createElement('p');
+    location.textContent = data.location;
+    
+  const profile = document.createElement('p');
+
+    const address = document.createElement('a');
+      address.setAttribute('href', data.html_url); //TODO: change this if needed to string interp
+      address.textContent = data.html_url;
+      profile.appendChild(address);
+
+  const followERS = document.createElement('p');
+    followERS.textContent = ``;
+
+    
+  
+  
+  return card;
+}
+
+
+card.appendChild(myContain);
+ 
+
+
 
 /*
   List of LS Instructors Github username's:
