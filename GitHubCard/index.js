@@ -9,13 +9,13 @@ const followersArray = [ "tetondan", "dustinmyers", "justsml", "luishrd", "bigkn
 followersArray.forEach (elem => {
   axios.get(`https://api.github.com/users/${elem}`)
    .then(res => {
-      console.log(res.data);
-      myContain.appendChild(myFunc(res.data))
-      //.myFunc(res.data)
+      //console.log(res.data);
+      //myContain.appendChild(
+        myFunc(res.data)
   //   console.log(myGit)
    })
    .catch(err =>{
-     console.error('yuou suuuuck')
+     console.error(err)
    }).finally(() => {
      console.log('fuck yourself')})
 
@@ -48,7 +48,7 @@ followersArray.forEach (elem => {
 */
 
 
-console.log(followersArray);
+//console.log(followersArray);
 
 //? thonbaosjdnf
 //! ;jlahdsf
@@ -77,7 +77,7 @@ console.log(followersArray);
 
 const myContain = document.querySelector('.cards');
    
-   function myFunc(obj) {
+  function myFunc(obj) {
    
    const card = document.createElement('div');
      card.classList.add('card');
@@ -92,7 +92,7 @@ const myContain = document.querySelector('.cards');
      card.appendChild(cardInfo);
    
      // ! here starts to be the beginning of the main div 
-     //TODO: everything here gets appended to "card-info"
+     // TODO: everything here gets appended to "card-info"
    const h3 = document.createElement('h3');
      h3.classList.add('name');
      h3.textContent = obj.name;
@@ -130,9 +130,6 @@ const myContain = document.querySelector('.cards');
      bio.textContent = `Bio: ${obj.bio}`;
      cardInfo.appendChild(bio);
 
-   //, location, profile, followERS, followING, bio)
-    
-  
   //console.log(card)
   return card;
 }
