@@ -1,17 +1,26 @@
 /*
-  STEP 1: using axios, send a GET request to the following URL
-    (replacing the placeholder with your Github name):
-    https://api.github.com/users/<your name>
+STEP 1: using axios, send a GET request to the following URL
+(replacing the placeholder with your Github name):
+https://api.github.com/users/<your name>
 */
 import axios from 'axios';
+const followersArray = [ "tetondan", "dustinmyers", "justsml", "luishrd", "bigknell" ];
 
-const myGit = axios.get(`https://api.github.com/users/davidfletcher`)
-  .then(res =>{
-    console.log(myGit)
+followersArray.forEach (elem => {
+  axios.get(`https://api.github.com/users/${elem}`)
+   .then(res => {
+      console.log(res.data);
+      myContain.appendChild(myFunc(res.data))
+      //.myFunc(res.data)
+  //   console.log(myGit)
+   })
+   .catch(err =>{
+     console.error('yuou suuuuck')
+   }).finally(() => {
+     console.log('fuck yourself')})
+
   })
-  .catch(err =>{
-    console.error(err)
-  })
+  //console.log(myGit)
 
 //console.log(myGit)
 /*
@@ -39,8 +48,8 @@ const myGit = axios.get(`https://api.github.com/users/davidfletcher`)
 */
 
 
-const followersArray = [ "tetondan", "dustinmyers", "justsml", "luishrd", "bigknell" ];
-//TODO: console.log(followersArray);
+console.log(followersArray);
+
 //? thonbaosjdnf
 //! ;jlahdsf
 //* ;alkjsdfl;
@@ -67,56 +76,79 @@ const followersArray = [ "tetondan", "dustinmyers", "justsml", "luishrd", "bigkn
 */
 
 const myContain = document.querySelector('.cards');
+   
+   function myFunc(obj) {
+   
+   const card = document.createElement('div');
+     card.classList.add('card');
+     myContain.appendChild(card)
+     
+     const img = document.createElement('img');
+     img.setAttribute('src', `${obj.avatar_url}`);
+     card.appendChild(img);
+   
+   const cardInfo = document.createElement('div');
+     cardInfo.classList.add('card-info');
+     card.appendChild(cardInfo);
+   
+     // ! here starts to be the beginning of the main div 
+     //TODO: everything here gets appended to "card-info"
+   const h3 = document.createElement('h3');
+     h3.classList.add('name');
+     h3.textContent = obj.name;
+     cardInfo.appendChild(h3);
+   
+   const para1 = document.createElement('p');
+     para1.classList.add('username');
+     para1.textContent = obj.login;
+     cardInfo.appendChild(para1);
+   
+   const location = document.createElement('p');  // ! made location
+     location.textContent = `Location: ${obj.location}`;  // ? text content of 
+     cardInfo.appendChild(location);
+     
+   const profile = document.createElement('p');  
+     profile.textContent = `Profile: `;  
+     cardInfo.appendChild(profile);
+   
+     const address = document.createElement('a');
+       address.setAttribute('href', `${obj.html_url}`);
+       address.setAttribute('target', '_blank'); //TODO: change this if needed to string interp
+       address.textContent = obj.html_url;
+       profile.appendChild(address);
+       //console.log(address)
+   
+   const followERS = document.createElement('p');
+     followERS.textContent = `Followers: ${obj.followers}`;
+     cardInfo.appendChild(followERS);
+   
+   const followING = document.createElement('p');
+     followING.textContent = `Following: ${obj.following}`;
+     cardInfo.appendChild(followING);
+   
+   const bio = document.createElement('p');
+     bio.textContent = `Bio: ${obj.bio}`;
+     cardInfo.appendChild(bio);
 
- function myFunc(data) {
-  const card = document.createElement('div');
-    card.classList.add('card');
-    card.appendChild(img);
-
-  const img = document.createElement('img');
-    img.setAttribute('src', data.avatar_url);
-
-  const div = document.createElement('div');
-    div.classList.add('card-info'); 
-
-  const h3 = document.createElement('h3');
-    h3.classList.add('name');
-    h3.textContent = data.name;
-
-  const para1 = document.createElement('p');
-    para1.className('username');
-    para1.textContent = data.login;
-
-  const location = document.createElement('p');
-    location.textContent = data.location;
-    
-  const profile = document.createElement('p');
-
-    const address = document.createElement('a');
-      address.setAttribute('href', data.html_url); //TODO: change this if needed to string interp
-      address.textContent = data.html_url;
-      profile.appendChild(address);
-
-  const followERS = document.createElement('p');
-    followERS.textContent = ``;
-
+   //, location, profile, followERS, followING, bio)
     
   
-  
+  //console.log(card)
   return card;
 }
 
 
-card.appendChild(myContain);
+
+//card.appendChild(myContain);
  
 
 
 
-/*
-  List of LS Instructors Github username's:
-    tetondan
-    dustinmyers
-    justsml
-    luishrd
-    bigknell
-*/
+
+  // List of LS Instructors Github username's:
+  //   tetondan
+  //   dustinmyers
+  //   justsml
+  //   luishrd
+  //   bigknell
+
